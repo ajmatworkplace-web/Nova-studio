@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALL TYPE | Digital Business</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0b1020;
+  color: white;
+  line-height: 1.6;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 18px 7%;
+  background: #10172a;
+  border-bottom: 1px solid #283149;
+}
+
+.logo {
+  color: #a78bfa;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #a78bfa;
+}
+
+.menu-btn {
+  display: none;
+  background: #a78bfa;
+  color: #111827;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: radial-gradient(circle at top, #25204a, #0b1020 70%);
+}
+
+.tag {
+  color: #c4b5fd;
+  letter-spacing: 3px;
+  font-size: 12px;
+}
+
+h1 {
+  font-size: clamp(36px, 7vw, 58px);
+  line-height: 1.2;
+  margin: 20px 0;
+}
+
+.highlight {
+  color: #a78bfa;
+}
+
+.hero p {
+  color: #cbd5e1;
+  max-width: 550px;
+  margin: 0 auto 25px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #a78bfa;
+  color: #111827;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.btn:hover {
+  background: #c4b5fd;
+  transform: translateY(-2px);
+}
+
+.section {
+  padding: 55px 7%;
+}
+
+.section h2 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.intro {
+  text-align: center;
+  color: #94a3b8;
+  margin-bottom: 28px;
+}
+
+.search {
+  display: block;
+  width: 100%;
+  max-width: 450px;
+  padding: 13px;
+  margin: 0 auto 30px;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  background: #111827;
+  color: white;
+  font-size: 16px;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #131c30;
+  border: 1px solid #283149;
+  border-radius: 14px;
+  padding: 24px;
+  transition: 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #a78bfa;
+}
+
+.card .emoji {
+  font-size: 32px;
+}
+
+.card h3 {
+  margin: 12px 0 8px;
+}
+
+.card p {
+  color: #b6c2d3;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.card[hidden] {
+  display: none;
+}
+
+#noResults {
+  color: #cbd5e1;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.about {
+  background: #10172a;
+  text-align: center;
+}
+
+.about p {
+  max-width: 650px;
+  margin: 0 auto 22px;
+  color: #cbd5e1;
+}
+
+.contact {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 22px;
+  background: #070b15;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+/* Popup design */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.82);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 400px;
+  background: #131c30;
+  border: 1px solid #a78bfa;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 15px 50px #0008;
+}
+
+.modal-content h2 {
+  color: #c4b5fd;
+  text-align: left;
+  margin: 12px 0;
+}
+
+.modal-content p {
+  color: #cbd5e1;
+  margin: 15px 0 22px;
+}
+
+.close-btn {
+  float: right;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 15px 5%;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 12px;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  .hero {
+    padding: 60px 18px;
+  }
+
+  .section {
+    padding: 42px 5%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">ALL TYPE.</div>
+
+  <button class="menu-btn" id="menuBtn"
+          aria-label="Toggle navigation"
+          aria-expanded="false">
+    ☰
+  </button>
+
+  <nav id="navMenu">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="tag">YOUR DIGITAL WORLD</div>
+
+  <h1>Grow Your Business<br>
+    With <span class="highlight">ALL TYPE.</span>
+  </h1>
+
+  <p>
+    Discover creative digital services and smart
+    solutions for your next big idea.
+  </p>
+
+  <a class="btn" href="#services">Explore Services ↗</a>
+</section>
+
+<section class="section" id="services">
+  <h2>Our Services</h2>
+  <p class="intro">Explore our services and find what you need.</p>
+
+  <input class="search" type="search" id="searchBox"
+         placeholder="Search services..."
+         aria-label="Search services">
+
+  <div class="services" id="serviceList">
+
+    <div class="card"
+         data-name="web design website"
+         data-title="Web Design"
+         data-description="We create modern, responsive and mobile-friendly websites.">
+      <div class="emoji">🌐</div>
+      <h3>Web Design</h3>
+      <p>Modern and responsive websites.</p>
+      <button class="btn details-btn">View Details ↗</button>
+    </div>
+
+    <div class="card"
+         data-name="graphic design logo"
+         data-title="Graphic Design"
+         data-description="Creative logos, posters and social media graphics.">
+      <div class="emoji">🎨</div>
+      <h3>Graphic Design</h3>
+      <p>Creative logos and graphics.</p>
+      <button class="btn details-btn">View Details ↗</button>
+    </div>
+
+    <div class="card"
+         data-name="video editing reels"
+         data-title="Video Editing"
+         data-description="Creative editing for social media reels and videos.">
+      <div class="emoji">🎬</div>
+      <h3>Video Editing</h3>
+      <p>Engaging videos and reels.</p>
+      <button class="btn details-btn">View Details ↗</button>
+    </div>
+
+    <div class="card"
+         data-name="digital marketing social media"
+         data-title="Digital Marketing"
+         data-description="Explore digital marketing ideas to help grow your online audience.">
+      <div class="emoji">📈</div>
+      <h3>Digital Marketing</h3>
+      <p>Grow your online audience.</p>
+      <button class="btn details-btn">View Details ↗</button>
+    </div>
+
+    <div class="card"
+         data-name="ai tools technology"
+         data-title="AI Tools"
+         data-description="Discover useful artificial intelligence tools for everyday work.">
+      <div class="emoji">🤖</div>
+      <h3>AI Tools</h3>
+      <p>Explore useful AI tools.</p>
+      <button class="btn details-btn">View Details ↗</button>
+    </div>
+
+    <div class="card"
+         data-name="business support consulting"
+         data-title="Business Support"
+         data-description="Explore practical ideas and digital support for business projects.">
+      <div class="emoji">💼</div>
+      <h3>Business Support</h3>
+      <p>Smart business solutions.</p>
+      <button class="btn details-btn">View Details ↗</button>
+    </div>
+
+  </div>
+
+  <p id="noResults" hidden>
+    No services found. Try another search.
+  </p>
+</section>
+
+<!-- Service details popup -->
+<div class="modal" id="serviceModal"
+     role="dialog" aria-modal="true"
+     aria-labelledby="modalTitle">
+  <div class="modal-content">
+    <button class="close-btn" id="closeModal"
+            aria-label="Close popup">×</button>
+    <h2 id="modalTitle">Service Name</h2>
+    <p id="modalDescription">Service details</p>
+    <button class="btn" id="modalDone">Got It</button>
+  </div>
+</div>
+
+<section class="section about" id="about">
+  <h2>About <span class="highlight">ALL TYPE</span></h2>
+  <p>
+    ALL TYPE is a digital business concept built around
+    creativity, technology and smart ideas. Our goal is to
+    help people explore digital services in one place.
+  </p>
+  <a class="btn" href="#contact">Let's Connect</a>
+</section>
+
+<section class="section contact" id="contact">
+  <h2>Let's Work Together</h2>
+  <p class="intro">
+    Have a project or question? Contact us on WhatsApp.
+  </p>
+
+  <a class="btn"
+     href="https://wa.me/919670665414"
+     target="_blank"
+     rel="noopener noreferrer">
+    Contact on WhatsApp
+  </a>
+</section>
+
+<footer>
+  <p>© <span id="year"></span> ALL TYPE. All rights reserved.</p>
+  <p>Made with HTML, CSS &amp; JavaScript.</p>
+</footer>
+
+<script>
+"use strict";
+
+// Current year
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+// Mobile navigation
+const menuBtn = document.getElementById("menuBtn");
+const navMenu = document.getElementById("navMenu");
+
+menuBtn.addEventListener("click", function () {
+  const isOpen = navMenu.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(isOpen));
+  menuBtn.textContent = isOpen ? "✕" : "☰";
+});
+
+navMenu.querySelectorAll("a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    navMenu.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.textContent = "☰";
+  });
+});
+
+// Search services
+const searchBox = document.getElementById("searchBox");
+const cards = document.querySelectorAll("#serviceList .card");
+const noResults = document.getElementById("noResults");
+
+searchBox.addEventListener("input", function () {
+  const query = searchBox.value.toLowerCase().trim();
+  let visibleCount = 0;
+
+  cards.forEach(function (card) {
+    const text =
+      (card.innerText + " " + card.dataset.name).toLowerCase();
+    const match = text.includes(query);
+
+    card.hidden = !match;
+
+    if (match) {
+      visibleCount++;
+    }
+  });
+
+  noResults.hidden = visibleCount !== 0;
+});
+
+// Service details popup
+const serviceModal = document.getElementById("serviceModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalDescription = document.getElementById("modalDescription");
+const closeModal = document.getElementById("closeModal");
+const modalDone = document.getElementById("modalDone");
+
+function openServiceModal(card) {
+  modalTitle.textContent = card.dataset.title;
+  modalDescription.textContent = card.dataset.description;
+  serviceModal.classList.add("show");
+  closeModal.focus();
+}
+
+function hideServiceModal() {
+  serviceModal.classList.remove("show");
+}
+
+document.querySelectorAll(".details-btn").forEach(function (button) {
+  button.addEventListener("click", function () {
+    const card = button.closest(".card");
+
+    if (card) {
+      openServiceModal(card);
+    }
+  });
+});
+
+closeModal.addEventListener("click", hideServiceModal);
+modalDone.addEventListener("click", hideServiceModal);
+
+// Close popup by tapping outside it
+serviceModal.addEventListener("click", function (event) {
+  if (event.target === serviceModal) {
+    hideServiceModal();
+  }
+});
+
+// Close popup with Escape key
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    hideServiceModal();
+  }
+});
+</script>
+
+</body>
+</html>
